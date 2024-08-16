@@ -7,7 +7,7 @@ DAILY_BACKUP_DIR="${BACKUP_DIR}/${CURRENT_DATE}"
 
 mkdir -p "$DAILY_BACKUP_DIR"
 
-xtrabackup --login-path=xtrabackup --backup --target-dir="$DAILY_BACKUP_DIR" > /backups/full/"${DAILY_BACKUP_DIR}.log" 2>&1
+xtrabackup --login-path=xtrabackup --backup --target-dir="$DAILY_BACKUP_DIR" > "${DAILY_BACKUP_DIR}.log" 2>&1
 
 # Limpa backups antigos (diretórios com nome de mais de 7 dias atrás)
 for dir in "$BACKUP_DIR"/*; do
