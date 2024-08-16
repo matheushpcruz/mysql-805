@@ -1,0 +1,21 @@
+#!/bin/bash
+BACKUP_DIR="/backups/full"
+
+CURRENT_DATE=$(date +"%Y-%m-%d")
+ULTIMOS_7_DIAS=$(date -d "6 days ago" +"%Y-%m-%d")
+DAILY_BACKUP_DIR="${BACKUP_DIR}/${CURRENT_DATE}"
+
+mkdir -p "$DAILY_BACKUP_DIR"
+
+xtrabackup --login-path=xtrabackup --backup --target-dir="$DAILY_BACKUP_DIR" > /backups/full/"${DAILY_BACKUP_DIR}.log" 2>&1
+
+# Limpa backups antigos (diretórios com nome de mais de 7 dias atrás)
+for dir in "$BACKUP_DIR"/*; do
+    dir_name=$(basename "$dir")
+    if [[ "$dir_name" < "$ULTIMOS_7_DIAS" ]]; then
+        rm -rf "$dir"
+        echo "Excluído backup antigo: $dir" >> "${DAILY_BACKUP_DIR}.log"
+    fi
+done
+
+echo "Backup diário finalizado em $(date +"%Y-%m-%d %H:%M:%S")" >> "${DAILY_BACKUP_DIR}.log"
