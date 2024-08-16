@@ -39,6 +39,7 @@ CREATE USER 'xtrabackup'@'localhost' IDENTIFIED BY 'aluno123';
 GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'xtrabackup'@'localhost';
 GRANT SELECT ON performance_schema.log_status TO 'xtrabackup'@'localhost';
 GRANT SELECT ON performance_schema.keyring_component_status TO 'xtrabackup'@'localhost';
+GRANT SELECT ON performance_schema.replication_group_members to xtrabackup@localhost;
 ```
 
 **Criar um diretório de backup (por exemplo, `/backup/`):**
