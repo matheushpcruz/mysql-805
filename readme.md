@@ -1,5 +1,9 @@
-Este repositório contém os arquivos utilizados durante as aulas de live class da 4Linux para o curso MySQL-805, ministrado entre 12/08/2024 e 16/08/2024.
+Este repositório contém os arquivos utilizados durante as aulas da *live class* da 4Linux para o curso **MySQL-805**.
 
-Entre os arquivos, temos o arquivo Vagrant utilizado para subir as máquinas virtuais, que foi atualizado a partir do repositório do antigo instrutor, trazendo as versões mais recentes do sistema operacional Debian. O repositório anteriormente utilizado para o curso era o seguinte: https://github.com/hector-vido/vagrant-mysql.
+Os arquivos estão organizados por turma, e cada diretório inclui os códigos auxiliares desenvolvidos, demonstrados e executados durante as aulas.
 
-Obs.: Este repositório contém apenas códigos auxiliares desenvolvidos durante as aulas, pois eles já estão sendo demonstrados e executados na própria apostila disponibilizada pela 4Linux.
+**Turmas:**
+
+* **Turma 8652**: Aulas ministradas de 12/08/2024 a 16/08/2024.
+* **Turma 8811**: Aulas ministradas de 14/07/2025 a 07/08/2025.
+
