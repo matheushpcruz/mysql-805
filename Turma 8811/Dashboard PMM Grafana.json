@@ -1,0 +1,1076 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 81,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "panels": [],
+      "title": "Desempenho",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${node_name}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 10
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 9,
+        "x": 0,
+        "y": 1
+      },
+      "id": 1,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.6.1",
+      "targets": [
+        {
+          "dataset": "employees",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${node_name}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n    SUM(state = 'executing' OR command NOT IN ('Sleep', 'Binlog Dump', 'Connect')) AS active,\r\n    SUM(command = 'Sleep') AS sleep,\r\n    COUNT(*) AS total\r\nFROM performance_schema.processlist;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "departments"
+        }
+      ],
+      "title": "Quantidade de conexões",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PA58DA793C7250F1B"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 7,
+        "x": 9,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "autoSizeColumns": true,
+        "autoSizePolygons": true,
+        "autoSizeRows": true,
+        "compositeConfig": {
+          "animationSpeed": "2500",
+          "composites": [
+            {
+              "clickThrough": "",
+              "clickThroughCustomTarget": "",
+              "clickThroughCustomTargetEnabled": false,
+              "clickThroughOpenNewTab": true,
+              "clickThroughSanitize": false,
+              "displayMode": "all",
+              "enabled": true,
+              "isTemplated": false,
+              "label": "COMPOSITE 1",
+              "metrics": [
+                {
+                  "ID": "c5260c65-08ee-43a3-800e-344b1c9475bb",
+                  "order": 0,
+                  "seriesMatch": "-/.*/"
+                }
+              ],
+              "name": "CPU  Usage",
+              "order": 0,
+              "showComposite": true,
+              "showMembers": false,
+              "showName": true,
+              "showValue": true
+            }
+          ],
+          "enabled": true
+        },
+        "compositeGlobalAliasingEnabled": false,
+        "ellipseCharacters": 10,
+        "ellipseEnabled": true,
+        "globalAutoScaleFonts": false,
+        "globalClickthrough": "/graph/d/hCWR9oimz/cpu-utilization-details-cores",
+        "globalClickthroughCustomTarget": "",
+        "globalClickthroughCustomTargetEnabled": false,
+        "globalClickthroughNewTabEnabled": false,
+        "globalClickthroughSanitizedEnabled": true,
+        "globalDecimals": 2,
+        "globalDisplayMode": "all",
+        "globalDisplayTextTriggeredEmpty": "ok",
+        "globalFillColor": "#0a50a1",
+        "globalFontSize": 12,
+        "globalGradientsEnabled": true,
+        "globalOperator": "last",
+        "globalPolygonBorderColor": "black",
+        "globalPolygonBorderSize": 1,
+        "globalPolygonSize": 50,
+        "globalRegexPattern": "",
+        "globalShape": "hexagon_pointed_top",
+        "globalShowTooltipColumnHeadersEnabled": true,
+        "globalShowValueEnabled": true,
+        "globalTextFontAutoColor": "#000000",
+        "globalTextFontAutoColorEnabled": false,
+        "globalTextFontColor": "#000000",
+        "globalTextFontFamily": "Inter",
+        "globalThresholdsConfig": [],
+        "globalTooltipsEnabled": true,
+        "globalTooltipsFontFamily": "Inter",
+        "globalTooltipsShowTimestampEnabled": true,
+        "globalUnitFormat": "percent",
+        "layoutDisplayLimit": 100,
+        "layoutNumColumns": 4,
+        "layoutNumRows": 2,
+        "overrideConfig": {
+          "overrides": [
+            {
+              "alias": "",
+              "clickThrough": "/graph/d/node-cpu/cpu-utilization-details-cores?from=$__from&to=$__to&var-node_name=${__cell_name}",
+              "clickThroughCustomTarget": "",
+              "clickThroughCustomTargetEnabled": false,
+              "clickThroughOpenNewTab": true,
+              "clickThroughSanitize": false,
+              "colors": [
+                "#299c46",
+                "#e5ac0e",
+                "#bf1b00",
+                "#ffffff"
+              ],
+              "decimals": 2,
+              "enabled": true,
+              "label": "OVERRIDE 1",
+              "metricName": "/.*/",
+              "operatorName": "last",
+              "order": 0,
+              "prefix": "",
+              "scaledDecimals": 0,
+              "suffix": "",
+              "thresholds": [
+                {
+                  "color": "#299c46",
+                  "state": 0,
+                  "value": 0
+                },
+                {
+                  "color": "#e5ac0e",
+                  "state": 1,
+                  "value": 40
+                },
+                {
+                  "color": "#bf1b00",
+                  "state": 2,
+                  "value": 80
+                }
+              ],
+              "unitFormat": "percent"
+            }
+          ]
+        },
+        "panelId": 0,
+        "radius": 25,
+        "sortByDirection": 1,
+        "sortByField": "name",
+        "tooltipDisplayMode": "all",
+        "tooltipDisplayTextTriggeredEmpty": "No Data",
+        "tooltipPrimarySortByField": "thresholdLevel",
+        "tooltipPrimarySortDirection": 2,
+        "tooltipSecondarySortByField": "value",
+        "tooltipSecondarySortDirection": 2
+      },
+      "pluginVersion": "2.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PA58DA793C7250F1B"
+          },
+          "editorMode": "code",
+          "expr": "avg by (node_name) (clamp_max(sum by (node_name) ( avg by (mode,node_name) ((clamp_max(rate(node_cpu_seconds_total{node_name=~\"$server\",region=~\".*\",node_type=~\".*\",mode!=\"idle\",mode!=\"iowait\",mode!=\"steal\"}[$interval]),1)) or \n(irate(node_cpu_seconds_total{node_name=~\"$server\",region=~\".*\",node_type=~\".*\",mode!=\"idle\",mode!=\"iowait\",mode!=\"steal\"}[5m])) )*100 or \n(avg_over_time(node_cpu_average{node_name=~\"$server\",region=~\".*\",node_type=~\".*\", mode=~\"total\"}[$interval]) or \navg_over_time(node_cpu_average{node_name=~\"$server\",region=~\".*\",node_type=~\".*\", mode=~\"total\"}[5m]) or avg_over_time(node_cpu_average{node_name=~\"$server\",region=~\".*\",node_type=~\".*\",node_type=\"remote_azure_database\"}[$interval]) or \navg_over_time(node_cpu_average{node_name=~\"$server\",region=~\".*\",node_type=~\".*\",node_type=\"remote_azure_database\"}[5m]))),100))",
+          "format": "time_series",
+          "interval": "$interval",
+          "intervalFactor": 1,
+          "legendFormat": "{{node_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Usage",
+      "type": "grafana-polystat-panel"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PA58DA793C7250F1B"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 1
+      },
+      "id": 7,
+      "options": {
+        "autoSizeColumns": true,
+        "autoSizePolygons": true,
+        "autoSizeRows": true,
+        "compositeConfig": {
+          "animationSpeed": "2500",
+          "composites": [],
+          "enabled": true
+        },
+        "compositeGlobalAliasingEnabled": false,
+        "ellipseCharacters": 10,
+        "ellipseEnabled": true,
+        "globalAutoScaleFonts": false,
+        "globalClickthrough": "",
+        "globalClickthroughCustomTarget": "",
+        "globalClickthroughCustomTargetEnabled": false,
+        "globalClickthroughNewTabEnabled": false,
+        "globalClickthroughSanitizedEnabled": false,
+        "globalDecimals": 2,
+        "globalDisplayMode": "all",
+        "globalDisplayTextTriggeredEmpty": "No Data",
+        "globalFillColor": "#0a50a1",
+        "globalFontSize": 12,
+        "globalGradientsEnabled": true,
+        "globalOperator": "last",
+        "globalPolygonBorderColor": "black",
+        "globalPolygonBorderSize": 2,
+        "globalPolygonSize": 50,
+        "globalRegexPattern": "",
+        "globalShape": "hexagon_pointed_top",
+        "globalShowTooltipColumnHeadersEnabled": true,
+        "globalShowValueEnabled": true,
+        "globalTextFontAutoColor": "#000000",
+        "globalTextFontAutoColorEnabled": false,
+        "globalTextFontColor": "#000000",
+        "globalTextFontFamily": "Inter",
+        "globalThresholdsConfig": [],
+        "globalTooltipsEnabled": true,
+        "globalTooltipsFontFamily": "Inter",
+        "globalTooltipsShowTimestampEnabled": true,
+        "globalUnitFormat": "percentunit",
+        "layoutDisplayLimit": 100,
+        "layoutNumColumns": 8,
+        "layoutNumRows": 8,
+        "overrideConfig": {
+          "overrides": [
+            {
+              "alias": "",
+              "clickThrough": "/graph/d/node-memory/memory-details/?from=$__from&to=$__to&var-node_name=${__cell_name}",
+              "clickThroughCustomTarget": "",
+              "clickThroughCustomTargetEnabled": false,
+              "clickThroughOpenNewTab": true,
+              "clickThroughSanitize": false,
+              "colors": [
+                "#299c46",
+                "#e5ac0e",
+                "#bf1b00",
+                "#ffffff"
+              ],
+              "decimals": "",
+              "enabled": true,
+              "label": "OVERRIDE 1",
+              "metricName": "/.*/",
+              "operatorName": "mean",
+              "order": 0,
+              "prefix": "",
+              "scaledDecimals": 0,
+              "suffix": "",
+              "thresholds": [
+                {
+                  "color": "#bf1b00",
+                  "state": 2,
+                  "value": 0.2
+                },
+                {
+                  "color": "#e5ac0e",
+                  "state": 1,
+                  "value": 0.3
+                },
+                {
+                  "color": "#299c46",
+                  "state": 0,
+                  "value": 0.4
+                }
+              ],
+              "unitFormat": "percentunit"
+            }
+          ]
+        },
+        "panelId": 0,
+        "radius": 100,
+        "sortByDirection": 1,
+        "sortByField": "name",
+        "tooltipDisplayMode": "all",
+        "tooltipDisplayTextTriggeredEmpty": "No Data",
+        "tooltipPrimarySortByField": "thresholdLevel",
+        "tooltipPrimarySortDirection": 2,
+        "tooltipSecondarySortByField": "value",
+        "tooltipSecondarySortDirection": 2
+      },
+      "pluginVersion": "2.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PA58DA793C7250F1B"
+          },
+          "editorMode": "code",
+          "expr": "clamp_max(avg by (node_name) ((((max_over_time(node_memory_MemAvailable_bytes{node_name=~\"$server\"}[$interval]) or\nmax_over_time(node_memory_MemAvailable_bytes{node_name=~\"$node_name\"}[5m])) or\n(node_memory_MemFree_bytes{node_name=~\"$server\"} + \nnode_memory_Buffers_bytes{node_name=~\"$server\"} + \nnode_memory_Cached_bytes{node_name=~\"$server\"})) /\n(max_over_time(node_memory_MemTotal_bytes{node_name=~\"$server\"}[$interval]) or \nmax_over_time(node_memory_MemTotal_bytes{node_name=~\"$server\"}[$interval])))),1)",
+          "format": "time_series",
+          "hide": false,
+          "interval": "$interval",
+          "intervalFactor": 1,
+          "legendFormat": "{{node_name}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PA58DA793C7250F1B"
+          },
+          "editorMode": "code",
+          "expr": "avg by (node_name) (100 - azure_memory_percent_average{node_name=~\"$server\"})/100",
+          "interval": "$interval",
+          "legendFormat": "{{node_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Free Memory Percent",
+      "type": "grafana-polystat-panel"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${node_name}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tempo em Execução"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 167
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Início Query"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 113
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Database"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 98
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "IP Usuário"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 162
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Usuário"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 116
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.6.1",
+      "targets": [
+        {
+          "dataset": "employees",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${node_name}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n    TIME AS `Tempo em Execução`,\r\n    TIME_FORMAT(from_unixtime(UNIX_TIMESTAMP(NOW()) - TIME), '%H:%i:%s') AS `Início Query`,\r\n    IFNULL(DB, '') AS `Database`,\r\n    HOST AS `IP Usuário`,\r\n    USER AS `Usuário`,\r\n    INFO AS `Query`\r\nFROM performance_schema.processlist\r\nWHERE COMMAND NOT IN ('Sleep', 'Connect')\r\n  AND INFO IS NOT NULL  \r\nORDER BY TIME DESC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Consultas ativas",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${node_name}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tempo em Execução"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 167
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Início Query"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 113
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Database"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 98
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "IP Usuário"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 162
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Usuário"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 116
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 3,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.6.1",
+      "targets": [
+        {
+          "dataset": "employees",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${node_name}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n    rdl.OBJECT_SCHEMA AS waiting_schema,\r\n    rdl.OBJECT_NAME AS waiting_table,\r\n    rdl.INDEX_NAME AS waiting_index,\r\n    rdl.LOCK_TYPE AS waiting_lock_type,\r\n    rdl.LOCK_MODE AS waiting_lock_mode,\r\n    rdl.LOCK_DATA AS waiting_row,\r\n    wt.PROCESSLIST_ID AS waiting_process_id,\r\n    wt.PROCESSLIST_USER AS waiting_user,\r\n    wt.PROCESSLIST_HOST AS waiting_host,\r\n    wt.PROCESSLIST_INFO AS waiting_query,\r\n    bdl.OBJECT_SCHEMA AS blocking_schema,\r\n    bdl.OBJECT_NAME AS blocking_table,\r\n    bdl.INDEX_NAME AS blocking_index,\r\n    bdl.LOCK_TYPE AS blocking_lock_type,\r\n    bdl.LOCK_MODE AS blocking_lock_mode,\r\n    bdl.LOCK_DATA AS blocking_row,\r\n    bt.PROCESSLIST_ID AS blocking_process_id,\r\n    bt.PROCESSLIST_USER AS blocking_user,\r\n    bt.PROCESSLIST_HOST AS blocking_host,\r\n    bt.PROCESSLIST_INFO AS blocking_query\r\nFROM\r\n    performance_schema.data_lock_waits dw\r\n    JOIN performance_schema.data_locks rdl ON dw.REQUESTING_ENGINE_LOCK_ID = rdl.ENGINE_LOCK_ID\r\n    JOIN performance_schema.data_locks bdl ON dw.BLOCKING_ENGINE_LOCK_ID = bdl.ENGINE_LOCK_ID\r\n    JOIN performance_schema.threads wt ON rdl.THREAD_ID = wt.THREAD_ID\r\n    JOIN performance_schema.threads bt ON bdl.THREAD_ID = bt.THREAD_ID;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Locks",
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 5,
+      "panels": [],
+      "title": "Replicação",
+      "type": "row"
+    },
+    {
+      "datasource": "Metrics",
+      "description": "This table shows network and status information for replication group members. The network addresses shown are the addresses used to connect clients to the group, and should not be confused with the member's internal group communication address specified by group_replication_local_address.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "applyToRow": false,
+              "mode": "basic",
+              "type": "color-background"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "PRIMARY": {
+                  "color": "dark-blue",
+                  "index": 0,
+                  "text": "PRIMARY"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "member_port"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 95
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "member_id"
+            },
+            "properties": [
+              {
+                "id": "custom.minWidth",
+                "value": 312
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 8,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.6.1",
+      "targets": [
+        {
+          "datasource": {
+            "0": "M",
+            "1": "e",
+            "2": "t",
+            "3": "r",
+            "4": "i",
+            "5": "c",
+            "6": "s"
+          },
+          "editorMode": "code",
+          "expr": "mysql_perf_schema_replication_group_member_info{node_name=~\"$server\"} or mysql_perf_schema_replication_group_5_member_info{node_name=~\"$server\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "$interval",
+          "legendFormat": "{{service_name}}",
+          "refId": "B"
+        }
+      ],
+      "title": "Replication Group Members",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "agent_id": true,
+              "agent_type": true,
+              "channel_name": true,
+              "cluster": true,
+              "environment": true,
+              "instance": true,
+              "job": true,
+              "machine_id": true,
+              "member_id": false,
+              "member_version": false,
+              "node_id": true,
+              "node_name": true,
+              "node_type": true,
+              "replication_set": true,
+              "service_id": true,
+              "service_name": false,
+              "service_type": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 2,
+              "Value": 22,
+              "__name__": 3,
+              "agent_id": 4,
+              "agent_type": 5,
+              "channel_name": 6,
+              "cluster": 7,
+              "environment": 8,
+              "instance": 9,
+              "job": 10,
+              "member_host": 11,
+              "member_id": 1,
+              "member_port": 12,
+              "member_role": 13,
+              "member_state": 14,
+              "member_version": 15,
+              "node_id": 16,
+              "node_name": 17,
+              "node_type": 18,
+              "replication_set": 19,
+              "service_id": 20,
+              "service_name": 0,
+              "service_type": 21,
+              "source": 23
+            },
+            "renameByName": {
+              "Time": "",
+              "member_host": "Host",
+              "member_id": "Member ID",
+              "member_port": "Port",
+              "member_role": "Role",
+              "member_state": "State",
+              "member_version": "Version",
+              "node_id": "",
+              "node_name": "",
+              "service_name": "Service Name",
+              "service_type": "",
+              "source": "Source"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "db1",
+          "value": "db1"
+        },
+        "label": "Servidor",
+        "name": "server",
+        "options": [
+          {
+            "selected": true,
+            "text": "db1",
+            "value": "db1"
+          },
+          {
+            "selected": false,
+            "text": "db2",
+            "value": "db2"
+          },
+          {
+            "selected": false,
+            "text": "db3",
+            "value": "db3"
+          }
+        ],
+        "query": "db1, db2, db3",
+        "type": "custom"
+      },
+      {
+        "current": {
+          "text": "db1",
+          "value": "beubcq500rh8gd"
+        },
+        "hide": 2,
+        "name": "node_name",
+        "options": [],
+        "query": "mysql",
+        "refresh": 1,
+        "regex": "/^$server/",
+        "type": "datasource"
+      },
+      {
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
+        "current": {
+          "text": "1m",
+          "value": "1m"
+        },
+        "label": "Interval",
+        "name": "interval",
+        "options": [
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "refresh": 2,
+        "type": "interval"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Monitoramento",
+  "uid": "feubcwx09osn4d",
+  "version": 12
+}

@@ -1,4 +1,4 @@
-# Aula 08 – Benchmark, Tuning & Particionamento Avançado no MySQL
+# Aula 08 – Tuning e Particionamento
 
 ### 1. Análise de Espera e Consultas no Performance Schema
 
