@@ -91,10 +91,6 @@ xtrabackup --copy-back --target-dir=/backups/full/2025-08-01
 chown -R mysql:mysql /srv/mysql
 ```
 
-Aqui está o trecho corrigido e formatado de forma mais clara:
-
----
-
 **Aplicar binlogs até o ponto desejado:**
 
 ```bash
@@ -113,8 +109,6 @@ mysqlbinlog --start-position=1203 --stop-datetime="2025-07-30 14:35:00" \
 ```bash
 mysql -uroot -p < /tmp/binlog_replay.sql
 ```
-
-Segue o texto corrigido e formatado:
 
 ---
 
