@@ -268,7 +268,7 @@ apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 ```
 
 ```bash
-docker run -d -p 8443:8443 --name pmm-server percona/pmm-server:latest  
+docker run -d -p 443:8443 --name pmm-server percona/pmm-server:3  
 # Baixa e executa o container do PMM Server (porta 8443)
 ```
 
