@@ -155,7 +155,7 @@ UNLOCK TABLES;
 ```sql
 FLUSH TABLES WITH READ LOCK;
 ```
-> Força o MySQL a gravar todos os dados em disco e bloqueia para leitura — usado em backup.
+> Força o MySQL a gravar todos os dados em disco e bloqueia para leitura (usado em backup).
 
 ```sql
 SELECT * FROM cientistas WHERE id = 2 FOR UPDATE;

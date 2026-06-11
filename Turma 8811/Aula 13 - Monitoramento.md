@@ -1,4 +1,4 @@
-# Aula 13 — Monitoramento do MySQL
+# Aula 13: Monitoramento do MySQL
 
 ## **1. ZABBIX**
 
